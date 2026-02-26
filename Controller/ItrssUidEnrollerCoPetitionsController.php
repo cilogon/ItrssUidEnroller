@@ -51,7 +51,9 @@ class ItrssUidEnrollerCoPetitionsController extends CoPetitionsController {
 
         //Strip top level domain off of the domain portion of the email address
         $domain = strrchr($domain, '.', true);
-
+        
+        //remove any subdomains
+        $domain = (($result = strrchr($domain, '.')) ? substr($result, 1) : $domain);
         //Remove non-alphanumeric characters from the username and domain
         $pattern = '/[^a-zA-Z0-9]/';
         $domain = preg_replace($pattern, "", $domain);
