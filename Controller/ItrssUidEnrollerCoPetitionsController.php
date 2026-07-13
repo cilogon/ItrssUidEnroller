@@ -49,11 +49,37 @@ class ItrssUidEnrollerCoPetitionsController extends CoPetitionsController {
         $username = $emailComponents[0];
         $domain = $emailComponents[1];
 
-        //Strip top level domain off of the domain portion of the email address
-        $domain = strrchr($domain, '.', true);
-        
-        //remove any subdomains
-        $domain = (($result = strrchr($domain, '.')) ? substr($result, 1) : $domain);
+        // strip subdomains, TLDs, and country codes to get the core domain
+
+        $parts = explode('.', $domain);
+        $count = count($parts);
+
+        // can probably assume the domain has at least two parts, but just in case...
+        if ($count > 1) {
+
+          // Common functional/academic second-level domains
+          $academicAndFunctional = [
+            'ac', 'edu', 'com', 'co', 'org', 'net', 'gov', 'sch', 'res', 'unizg', 'univ'
+          ];
+
+          //Get the last two sections of the domain name
+          $lastPart = $parts[$count - 1];
+          $secondToLast = $parts[$count - 2];
+
+          // Check if the last part is a 2-letter country code AND the second-to-last part is a functional domain
+          if (strlen($lastPart) === 2 && in_array($secondToLast, $academicAndFunctional)) {
+
+            // Main domain is the 3rd item from the end (e.g., "uq" from "my.uq.edu.au")
+            $domain = $parts[$count - 3];
+
+          } else {
+
+            //This has standard domain structure. just use the next to last part as the core domain. This will also strip subdomains.
+            $domain = $secondToLast;
+
+          }
+        }
+
         //Remove non-alphanumeric characters from the username and domain
         $pattern = '/[^a-zA-Z0-9]/';
         $domain = preg_replace($pattern, "", $domain);
