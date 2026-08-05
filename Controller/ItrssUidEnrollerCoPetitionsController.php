@@ -85,8 +85,8 @@ class ItrssUidEnrollerCoPetitionsController extends CoPetitionsController {
         $domain = preg_replace($pattern, "", $domain);
         $username = preg_replace($pattern, "", $username);
 
-        //construct the base identifier
-        $uid = $domain . "-" . $username;
+        //construct the base identifier (always lowercase)
+        $uid = strtolower($domain . "-" . $username);
 
         //check if this identifier has already been assigned. If so, keep adding collision numbers on until we get a good one. 
         $goodUid = false;
