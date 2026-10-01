@@ -7,7 +7,7 @@ This page is for CILogon staff who run the Registry and administer the ITRSS CO.
 ## Related documentation
 
 - [ITRSS custom uid plugin policy](https://github.com/cilogon/itrss-policies/blob/main/ItrssUidEnroller%20Plugin.md): the policy behind the uid format, and the authority on why the format is what it is. This page describes how the code carries it out.
-- The overview of the ITRSS solution architecture, which explains how this plugin fits with the other ITRSS Registry plugins and services, has not been written yet. It will be linked here when it exists.
+- [ITRSS solution architecture overview](https://github.com/cilogon/itrss-policies/blob/main/ITRSS-Solution-Architecture.md): how this plugin fits with the other ITRSS Registry plugins and services. The overview is in a private repository for ITRSS and CILogon staff.
 
 ## How it works
 
