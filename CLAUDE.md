@@ -38,6 +38,9 @@ the ITRSS policy document linked from `README.md` (in the separate
   `View/ItrssUidEnrollers/edit.ctp` is a symlink to Registry's
   `app/View/Standard/edit.ctp` and only resolves when the plugin is installed
   under `local/Plugin` in a Registry checkout.
+- `docs/README.md`: the staff reference page, indexed from `README.md`.
+  `docs/plans/` holds planning artifacts and is not part of the staff
+  documentation.
 - The remaining directories (`Console`, `Test`, `Locale`, `webroot`, and so on)
   hold only `empty` placeholder files from the plugin skeleton.
 
@@ -65,7 +68,9 @@ the ITRSS policy document linked from `README.md` (in the separate
 ## Do's & Don'ts
 - Do: Respect existing code style and patterns but suggest alternatives
   that provide generally cleaner and more maintainable code.
-- Do: When a change alters the generated uid format or collision handling,
+- Do: When a change alters plugin behavior, update `docs/README.md` in the
+  same pull request. Cite code by file and function name, not line number.
+  If the change alters the generated uid format or collision handling, also
   say so to the developer so the ITRSS policy document in
   `cilogon/itrss-policies` can be updated; that repository is not edited from
   here.
